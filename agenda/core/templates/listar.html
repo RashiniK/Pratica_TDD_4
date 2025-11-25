@@ -7,5 +7,30 @@
 </head>
 <body>
     <h1>listar</h1>
+     {% if agendas %}
+                    <table id="lista-agendas">
+                        <tr>
+                          <th ></th>
+                          <th >nome completo</th>
+                          <th >telefone</th>
+                          <th >email</th>
+                            <th >observacao</th>
+                        </tr>
+                    {% for i in agendas %}
+                        <tr>
+                            <th>{{ i.id }}</th>
+                            <th>{{ i.nome_completo }}</th>
+                            <th>{{ i.telefone }}</th>
+                            <th>{{ i.email }}</th>
+                            <th>{{ i.observacao }}</th>
+                        </tr>
+                    {% endfor %}
+
+                {% else %}
+                    <div>
+                      sem agenda 
+                    </div>
+                {% endif %}
+                </table>
 </body>
 </html>

@@ -7,5 +7,84 @@
 </head>
 <body>
     <h1>editar</h1>
+                <form action="{% url "editar" %}" method="post">
+                    
+                    <div class="sep">
+                        
+
+                            {% if  ids %}
+                                <select id="idField" name="id" >
+                                <option selected hidden>escolha um contato</option>
+
+                            {% else %}
+                                <select id="idField" name="id" disabled>
+                                <option selected hidden>sem contatos</option>
+
+                            {% endif %}
+
+                            {% for i in ids %}
+                                <option value="{{ i.id }}">{{ i.id }} - {{ i.nome_completo }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="sep">
+                        <b>nome completo</b>
+                        <input name="nome_completo" id="nomeField" type="text" class="form-control" disabled>
+                    </div>
+
+                    <div class="sep">
+                        <b>telefone</b>
+                        <input name="telefone" id="telefoneField" type="text" class="form-control" placeholder="(xx) xxxxx-xxxx" disabled>
+                    </div>
+
+                    <div class="sep">
+                        <b>email</b>
+                        <input name="email" id="emailField" type="email" class="form-control" aria-describedby="basic-addon2" disabled>
+                    </div>
+
+                    <div class="sep">
+                        <b>observacao</b>
+                        <input type="text" name="observacao" id="observacaoField" disabled>
+                    </div>
+
+                        <div>
+                            <button type="submit">
+                                <b> atualizar</b>
+                            </button>
+                        </div>
+
+                   
+
+
+                </form>
+        
+        <script>
+        const url = location.href + "?";
+        const idField = document.getElementById("idField");
+        const nomeField = document.getElementById("nomeField");
+        const telefoneField = document.getElementById("telefoneField");
+        const emailField = document.getElementById("emailField");
+        const observacaoField = document.getElementById("observacaoField");
+        
+        idField.addEventListener("change", async()=>{
+            const response = await fetch(url + new URLSearchParams({"id" : idField.value}));
+            const data = await response.json();
+            console.log(response.status);
+
+            nomeField.value = data[0]["nome_completo"];
+            nomeField.disabled = false;
+
+            telefoneField.value = data[0]["telefone"];
+            telefoneField.disabled = false;
+
+            emailField.value = data[0]["email"];
+            emailField.disabled = false;
+
+            observacaoField.value = data[0]["observacao"];
+            observacaoField.disabled = false;
+        })
+       
+    </script>
 </body>
 </html>

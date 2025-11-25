@@ -7,5 +7,38 @@
 </head>
 <body>
     <h1>deletar</h1>
+    <form action="" method="post">
+                   
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Id</span>
+
+                            {% if contatos %}
+                                <select id="idField" name="id">
+                                <option selected hidden>escolha um contato</option>
+
+                            {% else %}
+                                <select id="idField" name="id" disabled>
+                                <option selected hidden>sem contatos</option>
+
+                            {% endif %}
+
+                            {% for i in contatos %}
+                                <option value="{{ i.id }}">{{ i.id }} - {{ i.nome_completo }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                        <div>
+                            <button type="submit">
+                                <b> deletar</b>
+                            </button>
+                        </div>
+
+                    
+
+
+
+                </form>
 </body>
 </html>
