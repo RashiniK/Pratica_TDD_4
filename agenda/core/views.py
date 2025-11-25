@@ -27,3 +27,25 @@ def logout(request):
 def home(request):
     context = {}
     return render(request, 'index.html', context)
+
+
+
+@login_required
+def listar(request):
+    context = {}
+    return render(request, 'listar.html', context)
+
+@login_required
+def cadastrar(request):
+    context = {}
+    return render(request, 'cadastrar.html', context)
+
+@login_required
+def deletar(request):
+    context = {}
+    return render(request, 'deletar.html', context)
+
+@login_required
+def editar(request):
+    context = {}
+    return render(request, 'editar.html', context)

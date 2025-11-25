@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
+from core.models import Agenda
 
 class LoginForm(ModelForm):
     class Meta:
@@ -46,3 +47,9 @@ class LoginForm(ModelForm):
                 raise ValidationError("Senha incorreta para o e-mail informado.")
 
             self.user = user
+
+class AgendaForm(ModelForm):
+    
+    model = Agenda
+
+    fields = ('nome_completo', 'telefone', 'email', 'observacao')
